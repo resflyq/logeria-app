@@ -7,7 +7,7 @@ import 'core/domain/properties_provider.dart';
 void main() {
   runApp(
     ChangeNotifierProvider(
-      create: (context) => propertiesProvider(), 
+      create: (context) => PropertiesProvider(), 
       child: const App(),
     ),
   );

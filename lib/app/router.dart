@@ -3,6 +3,7 @@
 import 'package:go_router/go_router.dart';
 import '../features/shell/shell_page.dart';
 import '../features/properties/pages/properties_page.dart';
+import '../features/properties/pages/editor_page.dart';
 
 final router = GoRouter(
   initialLocation: '/properties',
@@ -15,6 +16,10 @@ final router = GoRouter(
         GoRoute(
           path: '/properties',
           builder: (context, state) => const PropertiesPage(),
+        ),
+        GoRoute(
+          path: '/editor',
+          builder: (context, state) => const PropertyEditor(),
         ),
       ],
     ),
