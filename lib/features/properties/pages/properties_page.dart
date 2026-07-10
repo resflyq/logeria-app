@@ -113,26 +113,70 @@ class PropertiesPage extends StatelessWidget {
     );
   }
 
-  // Виджет списка недвижимости
-  Widget _buildPropertiesList(BuildContext context, List<Property> items) {
-    return ListView.builder(
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          onTap: () => _openEditor(context, property: items[index]),
-          title: Text(
-            items[index].name,
-            style: AppTextStyles.body.copyWith(color: Colors.white), 
+Widget _buildPropertiesList(BuildContext context, List<Property> items) {
+  return GridView.builder(
+    padding: const EdgeInsets.all(16),
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      crossAxisSpacing: 16,
+      mainAxisSpacing: 16,
+      childAspectRatio: 1.0,
+    ),
+    itemCount: items.length,
+    itemBuilder: (context, index) {
+      final property = items[index];
+      
+      return Card(
+        color: Colors.grey[900],
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: () => _openEditor(context, property: property),
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Stack( 
+              children: [
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.home_work, color: AppColors.primary, size: 40),
+                      const SizedBox(height: 12),
+                      Text(
+                        property.name,
+                        style: AppTextStyles.body.copyWith(color: Colors.white),
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 3),
+                      Text(
+                        property.address,
+                        style: AppTextStyles.body.copyWith(color: Colors.white, fontSize: 10),
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  top: -10,
+                  right: -8,
+                  child: IconButton(
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                    icon: const Icon(Icons.close, color: Colors.white, size: 40),
+                    onPressed: () {
+                      context.read<PropertiesProvider>().deleteProperty(property.id);
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
-          leading: Icon(Icons.home_work, color: AppColors.primary), 
-          trailing: IconButton(
-            icon: const Icon(Icons.delete, color: Colors.red),
-            onPressed: () {
-              context.read<PropertiesProvider>().deleteProperty(items[index].id);
-            },
-          ),
-        );
-      },
-    );
-  }
+        ),
+      );
+    },
+  );
+}
 }

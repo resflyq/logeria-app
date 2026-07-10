@@ -1,0 +1,15 @@
+"filename", "language", "Dart", "comment", "blank", "total"
+"c:\Users\sergm\Desktop\startapp\logeria\lib\app\app.dart", "Dart", 14, 1, 4, 19
+"c:\Users\sergm\Desktop\startapp\logeria\lib\app\router.dart", "Dart", 24, 1, 3, 28
+"c:\Users\sergm\Desktop\startapp\logeria\lib\core\database\app_database.dart", "Dart", 51, 0, 11, 62
+"c:\Users\sergm\Desktop\startapp\logeria\lib\core\domain\properties_provider.dart", "Dart", 27, 0, 7, 34
+"c:\Users\sergm\Desktop\startapp\logeria\lib\core\domain\property.dart", "Dart", 71, 1, 4, 76
+"c:\Users\sergm\Desktop\startapp\logeria\lib\core\theme\app_colors.dart", "Dart", 12, 0, 9, 21
+"c:\Users\sergm\Desktop\startapp\logeria\lib\core\theme\app_text_styles.dart", "Dart", 27, 0, 3, 30
+"c:\Users\sergm\Desktop\startapp\logeria\lib\core\theme\app_theme.dart", "Dart", 11, 0, 4, 15
+"c:\Users\sergm\Desktop\startapp\logeria\lib\features\properties\pages\editor_page.dart", "Dart", 391, 9, 18, 418
+"c:\Users\sergm\Desktop\startapp\logeria\lib\features\properties\pages\properties_page.dart", "Dart", 170, 0, 13, 183
+"c:\Users\sergm\Desktop\startapp\logeria\lib\features\shell\shell_page.dart", "Dart", 74, 0, 12, 86
+"c:\Users\sergm\Desktop\startapp\logeria\lib\gen\assets.gen.dart", "Dart", 3, 8, 4, 15
+"c:\Users\sergm\Desktop\startapp\logeria\lib\main.dart", "Dart", 12, 1, 1, 14
+"Total", "-", 887, 21, 93, 1001

@@ -1,0 +1,48 @@
+Date : 2026-07-10 19:28:04
+Directory : c:\Users\sergm\Desktop\startapp\logeria\lib
+Total : 13 files,  887 codes, 21 comments, 93 blanks, all 1001 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Dart     |         13 |        887 |         21 |         93 |      1,001 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                       | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                          |         13 |        887 |         21 |         93 |      1,001 |
+| . (Files)                                                                                  |          1 |         12 |          1 |          1 |         14 |
+| app                                                                                        |          2 |         38 |          2 |          7 |         47 |
+| core                                                                                       |          6 |        199 |          1 |         38 |        238 |
+| core\database                                                                              |          1 |         51 |          0 |         11 |         62 |
+| core\domain                                                                                |          2 |         98 |          1 |         11 |        110 |
+| core\theme                                                                                 |          3 |         50 |          0 |         16 |         66 |
+| features                                                                                   |          3 |        635 |          9 |         43 |        687 |
+| features\properties                                                                        |          2 |        561 |          9 |         31 |        601 |
+| features\properties\pages                                                                  |          2 |        561 |          9 |         31 |        601 |
+| features\shell                                                                             |          1 |         74 |          0 |         12 |         86 |
+| gen                                                                                        |          1 |          3 |          8 |          4 |         15 |
++--------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                   | language | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\sergm\Desktop\startapp\logeria\lib\app\app.dart                                   | Dart     |         14 |          1 |          4 |         19 |
+| c:\Users\sergm\Desktop\startapp\logeria\lib\app\router.dart                                | Dart     |         24 |          1 |          3 |         28 |
+| c:\Users\sergm\Desktop\startapp\logeria\lib\core\database\app_database.dart                | Dart     |         51 |          0 |         11 |         62 |
+| c:\Users\sergm\Desktop\startapp\logeria\lib\core\domain\properties_provider.dart           | Dart     |         27 |          0 |          7 |         34 |
+| c:\Users\sergm\Desktop\startapp\logeria\lib\core\domain\property.dart                      | Dart     |         71 |          1 |          4 |         76 |
+| c:\Users\sergm\Desktop\startapp\logeria\lib\core\theme\app_colors.dart                     | Dart     |         12 |          0 |          9 |         21 |
+| c:\Users\sergm\Desktop\startapp\logeria\lib\core\theme\app_text_styles.dart                | Dart     |         27 |          0 |          3 |         30 |
+| c:\Users\sergm\Desktop\startapp\logeria\lib\core\theme\app_theme.dart                      | Dart     |         11 |          0 |          4 |         15 |
+| c:\Users\sergm\Desktop\startapp\logeria\lib\features\properties\pages\editor_page.dart     | Dart     |        391 |          9 |         18 |        418 |
+| c:\Users\sergm\Desktop\startapp\logeria\lib\features\properties\pages\properties_page.dart | Dart     |        170 |          0 |         13 |        183 |
+| c:\Users\sergm\Desktop\startapp\logeria\lib\features\shell\shell_page.dart                 | Dart     |         74 |          0 |         12 |         86 |
+| c:\Users\sergm\Desktop\startapp\logeria\lib\gen\assets.gen.dart                            | Dart     |          3 |          8 |          4 |         15 |
+| c:\Users\sergm\Desktop\startapp\logeria\lib\main.dart                                      | Dart     |         12 |          1 |          1 |         14 |
+| Total                                                                                      |          |        887 |         21 |         93 |      1,001 |
++--------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
