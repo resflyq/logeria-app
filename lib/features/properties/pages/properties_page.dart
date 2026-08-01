@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:logeria/core/domain/properties_provider.dart';
 import 'package:logeria/core/domain/property.dart';
-import 'package:provider/provider.dart'; // Добавили импорт провайдера
-import 'package:go_router/go_router.dart'; // Добавили импорт GoRouter
+import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
 import 'package:logeria/core/theme/app_colors.dart';
 import 'package:logeria/core/theme/app_text_styles.dart';
 
@@ -10,21 +10,24 @@ class PropertiesPage extends StatelessWidget {
   const PropertiesPage({super.key});
 
   Future<void> _openEditor(
-    BuildContext context, {
-    Property? property,
-  }) async {
-    final provider = context.read<PropertiesProvider>();
+      BuildContext context, {
+      Property? property,
+    }) async {
+      final provider = context.read<PropertiesProvider>();
 
-    final Property? result = await context.push<Property>('/editor');
+      final Property? result = await context.push<Property>(
+        '/editor',
+        extra: property,
+      );
 
-    if (result == null) return;
+      if (result == null) return;
 
-    if (property == null) {
-      provider.addProperty(result);
-    } else {
-      provider.updateProperty(property.id, result);
+      if (property == null) {
+        provider.addProperty(result);
+      } else {
+        provider.updateProperty(property.id, result);
+      }
     }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,28 +41,31 @@ class PropertiesPage extends StatelessWidget {
           children: [
             Text(
               'Have a good day!', 
-              style: AppTextStyles.subtitle.copyWith(
-                fontSize: 16.5,
-
-              )),
+              style: AppTextStyles.subtitle.copyWith(fontSize: 16.5),
+            ),
             Text(
               'My properties', 
-              style: AppTextStyles.title.copyWith(
-                fontSize: 16.5,
-
-              )),
+              style: AppTextStyles.title.copyWith(fontSize: 16.5),
+            ),
           ],
         ),
         backgroundColor: AppColors.background,
-        shape: Border(
+        shape: const Border(
           bottom: BorderSide(
             color: AppColors.surface,
           ),
         ),
       ),
-      body: properties.isEmpty
-          ? _buildEmptyState(context)
-          : _buildPropertiesList(context, properties),
+      body: Column(
+        children: [
+          _buildStatsSummary(context, properties),
+          Expanded(
+            child: properties.isEmpty
+                ? _buildEmptyState(context)
+                : _buildPropertiesList(context, properties),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _openEditor(context),
         backgroundColor: AppColors.primary,
@@ -70,6 +76,73 @@ class PropertiesPage extends StatelessWidget {
     );
   }
 
+  Widget _buildStatsSummary(BuildContext context, List<Property> properties) {
+    final double totalProfit = properties.fold(0, (sum, p) => sum + (p.profit != null ? double.parse(p.profit!) : 0));
+    final int activeTenants = properties.where((p) => p.tenant.isNotEmpty).length;
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0, bottom: 8.0),
+      child: Row(
+        children: [
+          _buildStatCard(
+            title: 'Profit',
+            value: '\$${totalProfit.toStringAsFixed(0)}',
+            color: Colors.green.withOpacity(0.1),
+            textColor: Colors.green[700]!,
+          ),
+          const SizedBox(width: 12),
+          _buildStatCard(
+            title: 'Tenants',
+            value: '$activeTenants',
+            color: AppColors.primary.withOpacity(0.1),
+            textColor: AppColors.primary,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatCard({
+    required String title,
+    required String value,
+    required Color color,
+    required Color textColor,
+  }) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: textColor.withOpacity(0.2)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: AppTextStyles.body2.copyWith(
+                fontSize: 11,
+                color: textColor.withOpacity(0.8),
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              value,
+              style: AppTextStyles.title.copyWith(
+                fontSize: 16,
+                color: textColor,
+                fontWeight: FontWeight.bold,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
   Widget _buildEmptyState(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -112,6 +185,16 @@ class PropertiesPage extends StatelessWidget {
       ],
     );
   }
+Color _parsePropertyColor(String? colorStr) {
+  if (colorStr == null || colorStr.isEmpty) return Colors.grey[900]!;
+  try {
+    String hex = colorStr.replaceAll('0x', '').replaceAll('#', '').trim();
+    if (hex.length == 6) hex = 'FF' + hex;
+    return Color(int.parse(hex, radix: 16));
+  } catch (_) {
+    return Colors.grey[900]!;
+  }
+}
 
 Widget _buildPropertiesList(BuildContext context, List<Property> items) {
   return GridView.builder(
@@ -125,9 +208,10 @@ Widget _buildPropertiesList(BuildContext context, List<Property> items) {
     itemCount: items.length,
     itemBuilder: (context, index) {
       final property = items[index];
+      final cardColor = _parsePropertyColor(property.color);
       
       return Card(
-        color: Colors.grey[900],
+        color: cardColor,
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: () => _openEditor(context, property: property),
@@ -139,7 +223,7 @@ Widget _buildPropertiesList(BuildContext context, List<Property> items) {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.home_work, color: AppColors.primary, size: 40),
+                      Icon(Icons.home_work, color: AppColors.background, size: 40),
                       const SizedBox(height: 12),
                       Text(
                         property.name,
@@ -156,6 +240,14 @@ Widget _buildPropertiesList(BuildContext context, List<Property> items) {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
+                      const SizedBox(height: 3),
+                      Text(
+                        property.tenant,
+                        style: AppTextStyles.body.copyWith(color: Colors.white, fontSize: 7),
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),                      
                     ],
                   ),
                 ),

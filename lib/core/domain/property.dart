@@ -8,6 +8,7 @@ class Property {
   final String? startDate;
   final String? endDate;
   final String? imagePath;
+  final String? profit;
 
   const Property({
     required this.id,
@@ -18,6 +19,7 @@ class Property {
     required this.color,
     required this.startDate,
     required this.endDate,
+    required this.profit,
     this.imagePath,
   });
 
@@ -30,6 +32,7 @@ class Property {
     String? color,
     String? startDate,
     String? endDate,
+    String? profit,
     String? imagePath,
   }) {
     return Property(
@@ -41,6 +44,7 @@ class Property {
       color: color ?? this.color,
       startDate: startDate ?? this.startDate,
       endDate: endDate ?? this.endDate,
+      profit: profit ?? this.profit,
       imagePath: imagePath ?? this.imagePath
     );
   }
@@ -56,7 +60,8 @@ class Property {
       'color': color,
       'startDate': startDate,
       'endDate': endDate,
-      'imagePath': imagePath
+      'imagePath': imagePath,
+      'profit': profit,
     };
   }
 
@@ -67,10 +72,11 @@ class Property {
       address: map['address'] ?? '',
       tenant: map['tenant'] ?? '',
       price: map['price'] ?? '',
-      color: map['color'] ?? '',
+      color: map['color'],
       startDate: map['startDate'] ?? '', 
       endDate: map['endDate'] ?? '', 
       imagePath: map['imagePath'] ?? '',
+      profit: map['profit'] ?? '',
     );
   }
 }

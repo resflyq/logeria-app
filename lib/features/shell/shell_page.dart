@@ -47,7 +47,7 @@ class _ShellPageState extends State<ShellPage> {
         unselectedItemColor: const Color.fromARGB(255, 124, 124, 124),
         selectedLabelStyle: GoogleFonts.inter(
           fontSize: 12,
-          fontWeight: FontWeight.w500, // Полужирный для активного таба
+          fontWeight: FontWeight.w500,
         ),
         unselectedLabelStyle: GoogleFonts.inter(
           fontSize: 12,
@@ -62,14 +62,6 @@ class _ShellPageState extends State<ShellPage> {
               colorFilter: index == 0 ? ColorFilter.mode(AppColors.primary, BlendMode.srcIn) : ColorFilter.mode(Color.fromARGB(255, 124, 124, 124), BlendMode.srcIn)),
             label: 'Properties',
             
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/icons/calendar.svg',
-              width: 20,
-              height: 20,
-              colorFilter: index == 1 ? ColorFilter.mode(AppColors.primary, BlendMode.srcIn) : ColorFilter.mode(Color.fromARGB(255, 124, 124, 124), BlendMode.srcIn)),
-            label: 'Calendar',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(

@@ -19,7 +19,12 @@ class AppDatabase {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, filePath);
 
-    return await openDatabase(path, version: 1, onCreate: _createDB);
+    return await openDatabase(
+      path, 
+      version: 2, 
+      onCreate: _createDB,
+      onUpgrade: _onUpgrade,
+    );
   }
 
   Future _createDB(Database db, int version) async {
@@ -29,10 +34,20 @@ class AppDatabase {
         name TEXT NOT NULL,
         address TEXT NOT NULL,
         tenant TEXT NOT NULL,
-        color TEXT NOT NULL,
-        date TEXT NOT NULL
+        price TEXT NOT NULL,
+        color TEXT,
+        startDate TEXT,
+        endDate TEXT,
+        imagePath TEXT,
+        profit REAL
       )
     ''');
+  }
+
+  Future _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 2) {
+      await db.execute('ALTER TABLE properties ADD COLUMN profit REAL');
+    }
   }
 
   Future<void> insertOrUpdateProperty(Property property) async {
@@ -59,4 +74,4 @@ class AppDatabase {
       whereArgs: [id],
     );
   }
-} 
+}
