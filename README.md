@@ -54,6 +54,11 @@ Before you begin, ensure you have the following installed:
   <img src="assets/images/screenshot3.jpg" width="30%" alt="Logeria Home Screen with properties" />
 </p>
 
+## 📄 License
+
+This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
+
+[![License: GPL v3](https://shields.io)](https://gnu.org)
 
 ## 📬 Contact & Support
 
